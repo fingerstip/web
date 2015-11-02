@@ -43,6 +43,4 @@
 	<!-- 静态资源文件不拦截 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<import resource="elasticsearch-config.xml" />
-
 </beans>

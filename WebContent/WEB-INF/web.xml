@@ -50,6 +50,28 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- 出错页面定义 -->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/errors/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/errors/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/errors/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/errors/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/errors/error.jsp</location>
+	</error-page>
+
 
 	<!-- 静态资源不拦截 -->
 	<!-- <servlet-mapping> <servlet-name>default</servlet-name> <url-pattern>*.js</url-pattern> 

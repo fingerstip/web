@@ -1,0 +1,81 @@
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+
+webAppDirName = 'WebContent'
+
+/* 更改编译class文件夹 */
+sourceSets {
+	  main {
+		java {
+			srcDir 'src'
+		}
+		resources {
+			srcDir 'src'
+		}
+	}
+}
+
+/* 仓库 */
+repositories {
+	mavenCentral()
+}
+
+jar {
+	baseName = 'web'
+	version = '1.0'
+}
+
+/* 项目依赖jar包 */
+dependencies {
+	/* 打包时，不将其放进WEB-INF/lib下 */ 
+	providedCompile "javax.servlet:javax.servlet-api:3.1-b07"
+	/*
+	compile "io.searchbox:jest:0.1.6"*/
+	
+	compile "log4j:log4j:1.2.17"
+	compile "javax.servlet:jstl:1.2"
+	compile "com.google.guava:guava:18.0"
+	compile "org.elasticsearch:elasticsearch:1.7.1"
+	compile "org.apache.commons:commons-lang3:3.3.2"
+	compile "org.apache.logging.log4j:log4j-core:2.3"
+	compile "fr.pilato.spring:spring-elasticsearch:1.4.2"
+	compile "org.springframework:spring-webmvc:3.2.3.RELEASE"
+	compile "org.springframework:spring-context:3.2.3.RELEASE"
+	compile "org.springframework.data:spring-data-elasticsearch:1.3.0.RELEASE"
+	compile "jcifs:jcifs:1.3.17"
+	
+	/*
+	compile "net.sf.json-lib:json-lib:2.4"
+	compile "taglibs:standard:1.1.2"
+	compile "jstl:jstl:1.1.2"*/
+}
+
+eclipse{
+    wtp {
+        facet{
+            facet name: 'jst.web', version: '2.5'
+            facet name: 'java', version: '1.7'
+        }
+        component{
+            //resource sourcePath: "build/classes", deployPath: "/WEB-INF/classes"
+            resource sourcePath: "$webAppDirName", deployPath: "/"
+            //在wtp里除去“web app libraries”中对proviedlib的依赖，因为proviedlib已经放到tomcat/lib里
+            minusConfigurations += [configurations.providedCompile]
+        }
+        classpath{
+          //在classpath里除去额为的compile依赖，因为gradle containers里已有依赖
+          minusConfigurations += [ configurations.compile ]
+          //if you don't want some classpath entries 'exported' in Eclipse
+          /*noExportConfigurations += [configurations.compile]*/
+          //if you want to append extra containers:
+          containers 'org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0','org.eclipse.jdt.launching.JRE_CONTAINER', 'org.springsource.ide.eclipse.gradle.classpathcontainer'
+        }
+    }
+}
+
+task copyJars(type: Copy){
+	from configurations.runtime
+	into 'WebContent/WEB-INF/lib' //目标位置
+}
+

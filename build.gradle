@@ -64,7 +64,7 @@ eclipse{
             minusConfigurations += [configurations.providedCompile]
         }
         classpath{
-          //在classpath里除去额为的compile依赖，因为gradle containers里已有依赖
+          //在classpath里除去额外的compile依赖，因为gradle containers里已有依赖
           minusConfigurations += [ configurations.compile ]
           //if you don't want some classpath entries 'exported' in Eclipse
           /*noExportConfigurations += [configurations.compile]*/

@@ -1,4 +1,7 @@
 package com.linng.www.controller;
+
+import org.springframework.stereotype.Controller;
+
 /**
  * 
  *
@@ -16,7 +19,7 @@ package com.linng.www.controller;
  * @author LiNing
  *
  */
-@org.springframework.stereotype.Controller
+@Controller
 public class WebController {
 	
 

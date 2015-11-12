@@ -16,7 +16,8 @@ package com.linng.www.controller;
  * @author LiNing
  *
  */
-
-public class Controller {
+@org.springframework.stereotype.Controller
+public class WebController {
+	
 
 }

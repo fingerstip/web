@@ -17,11 +17,6 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<!-- 指定Spring的配置文件 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>WEB-INF/application.xml</param-value>
-	</context-param>
 
 	<servlet>
 		<servlet-name>webmvc</servlet-name>

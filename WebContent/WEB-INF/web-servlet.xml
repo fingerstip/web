@@ -18,16 +18,15 @@
              http://www.springframework.org/schema/aop 
              http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-
-	<context:annotation-config />
-	<!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
-	<mvc:annotation-driven />
-
 	<!-- 自动注入 -->
 	<context:component-scan base-package="com.linng.www.vo" />
 	<context:component-scan base-package="com.linng.www.dao" />
 	<context:component-scan base-package="com.linng.www.service" />
 	<context:component-scan base-package="com.linng.www.controller" />
+
+	<context:annotation-config />
+	<!-- 启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例 -->
+	<mvc:annotation-driven />
 
 	<!-- 模版文件 -->
 	<bean id="viewResolver"
@@ -42,5 +41,9 @@
 
 	<!-- 静态资源文件不拦截 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="428868400" />
+	</bean>
 
 </beans>

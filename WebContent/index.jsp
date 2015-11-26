@@ -19,14 +19,6 @@
 				</div>
 			</nav>
 		</div> -->
-		
-		<div class="row">
-			<form action="${pageContext.request.contextPath }/view/upload" id="form" method="post" enctype="multipart/form-data">
-				<input type="file" multiple="multiple" name="preview_upload_file" id="preview_upload_file">
-				<input type="submit" value="Submit" >
-			</form>
-		</div>
-		
 		<div class="row">
 			<div class="col-md-7" >
 				<div class="htmleaf-container">
